@@ -105,6 +105,13 @@
         let currentActive = "TRC20";
 
         document.addEventListener("DOMContentLoaded", function() {
+            // Check if user already submitted payment
+            const paymentStatus = localStorage.getItem("vantaPaymentStatus");
+            if (paymentStatus === "pending") {
+                showPendingScreen();
+                return;
+            }
+
             const planSize = localStorage.getItem("selectedPlanSize") || "5K";
             const planPrice = localStorage.getItem("selectedPlanPrice") || "80";
             document.getElementById("summary-plan-name").textContent = "$" + planSize + " Challenge";
@@ -121,10 +128,38 @@
             });
 
             document.getElementById("submit-btn").addEventListener("click", function() {
+                // Set status to pending instead of redirecting straight to dashboard
+                localStorage.setItem("vantaPaymentStatus", "pending");
+                
                 alert("Payment submission received! Your account is queued for verification.");
-                window.location.href = "dashboard.html";
+                
+                // Switch the main view to the pending screen
+                showPendingScreen();
             });
         });
+
+        function showPendingScreen() {
+            const mainContainer = document.querySelector("main");
+            mainContainer.innerHTML = `
+                <div class="max-w-md mx-auto bg-white border border-slate-200 rounded-3xl p-8 text-center space-y-6 shadow-xl mt-10">
+                    <div class="w-16 h-16 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold border border-amber-100">
+                        ⏳
+                    </div>
+                    <div class="space-y-2">
+                        <h2 class="text-xl font-bold text-slate-900">Verification in Progress</h2>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            We have received your payment submission. Our automated node or team is verifying your transaction hash. Your dashboard will unlock once confirmed.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs text-slate-600">
+                        Status: <span class="font-bold text-amber-600">Pending Review</span>
+                    </div>
+                    <button type="button" onclick="location.reload()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3.5 rounded-xl transition cursor-pointer">
+                        Check Status Again
+                    </button>
+                </div>
+            `;
+        }
 
         function selectNet(netKey) {
             currentActive = netKey;
