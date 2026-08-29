@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Vanta Funded</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<body class="bg-slate-50 text-slate-900 min-h-screen font-sans flex flex-col justify-center items-center px-6 py-12">
+
+    <!-- Card -->
+    <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <!-- VF Logo -->
+            <div class="inline-flex items-center justify-center bg-slate-900 text-blue-500 font-bold px-3.5 py-2 rounded-xl text-xl mb-4 shadow-sm">
+                VF
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight text-slate-900">
+                Create your account
+            </h1>
+            <p class="text-sm text-slate-500 mt-2">
+                Start your trading journey with Vanta Funded
+            </p>
+        </div>
+
+        <!-- Register Form -->
+        <form id="register-form" class="space-y-5">
+
+            <!-- Full Name -->
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">
+                    Full name
+                </label>
+                <input
+                    id="register-name"
+                    type="text"
+                    required
+                    placeholder="Enter your full name"
+                    class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                >
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">
+                    Email address
+                </label>
+                <input
+                    id="register-email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                >
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">
+                    Password
+                </label>
+                <input
+                    id="register-password"
+                    type="password"
+                    required
+                    minlength="6"
+                    placeholder="Create a password"
+                    class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                >
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">
+                    Confirm password
+                </label>
+                <input
+                    id="confirm-password"
+                    type="password"
+                    required
+                    minlength="6"
+                    placeholder="Confirm your password"
+                    class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+                >
+            </div>
+
+            <!-- Terms -->
+            <label class="flex items-start gap-3 cursor-pointer text-sm">
+                <input
+                    id="agree-terms"
+                    type="checkbox"
+                    required
+                    class="mt-1 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
+                >
+                <span class="text-slate-600">
+                    I agree to the
+                    <a href="#terms" class="text-blue-600 font-medium">
+                        Terms & Conditions
+                    </a>
+                </span>
+            </label>
+
+            <!-- Message -->
+            <p id="register-message" class="text-sm text-center hidden">
+            </p>
+
+            <!-- Create Button -->
+            <button
+                type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition shadow-sm text-sm">
+                Create Account
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="relative flex py-5 items-center">
+            <div class="flex-grow border-t border-slate-200"></div>
+            <span class="flex-shrink mx-4 text-slate-400 text-xs uppercase tracking-wider">
+                or
+            </span>
+            <div class="flex-grow border-t border-slate-200"></div>
+        </div>
+
+        <!-- Google -->
+        <button
+            id="google-register-btn"
+            type="button"
+            class="w-full flex items-center justify-center gap-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium py-3 rounded-xl transition text-sm shadow-sm">
+            <svg class="w-5 h-5" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.26v3.15C3.26 21.32 7.33 24 12 24z"/>
+                <path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.26C.46 8.22 0 10.06 0 12s.46 3.78 1.26 5.39l4.01-3.15z"/>
+                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.68 1.26 6.61l4.01 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/>
+            </svg>
+            Continue with Google
+        </button>
+
+        <!-- Sign In -->
+        <p class="text-center text-sm text-slate-600 mt-6">
+            Already have an account?
+            <a href="index.html" class="text-blue-600 hover:text-blue-700 font-medium ml-1 transition">
+                Sign in
+            </a>
+        </p>
+
+    </div>
+
+    <!-- Firebase Registration Logic Script -->
+    <script type="module">
+        import { 
+            auth, 
+            googleProvider, 
+            createUserWithEmailAndPassword, 
+            signInWithPopup, 
+            updateProfile,
+            setPersistence,
+            browserLocalPersistence 
+        } from "./firebase-config.js";
+
+        const form = document.getElementById("register-form");
+        const nameInput = document.getElementById("register-name");
+        const emailInput = document.getElementById("register-email");
+        const passwordInput = document.getElementById("register-password");
+        const confirmPasswordInput = document.getElementById("confirm-password");
+        const messageBox = document.getElementById("register-message");
+        const googleBtn = document.getElementById("google-register-btn");
+
+        function showMessage(text, isError = true) {
+            messageBox.textContent = text;
+            messageBox.className = `text-sm text-center mt-3 ${isError ? 'text-red-600' : 'text-green-600'}`;
+            messageBox.classList.remove("hidden");
+        }
+
+        // Email & Password Registration
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            messageBox.classList.add("hidden");
+
+            const name = nameInput.value;
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password !== confirmPassword) {
+                showMessage("Passwords do not match.");
+                return;
+            }
+
+            try {
+                // Create user
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                
+                // Update profile with the full name
+                await updateProfile(userCredential.user, {
+                    displayName: name
+                });
+
+                showMessage("Account created successfully! Redirecting...", false);
+                
+                // Redirect to login or dashboard after a brief delay
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1200);
+
+            } catch (error) {
+                showMessage(error.message);
+            }
+        });
+
+        // Google Sign Up
+        googleBtn.addEventListener("click", async () => {
+            messageBox.classList.add("hidden");
+            try {
+                await setPersistence(auth, browserLocalPersistence);
+                await signInWithPopup(auth, googleProvider);
+                showMessage("Google sign up successful! Redirecting...", false);
+                
+                setTimeout(() => {
+                    window.location.href = "index.html"; // Or dashboard.html
+                }, 1200);
+            } catch (error) {
+                showMessage(error.message);
+            }
+        });
+    </script>
+
+</body>
+</html>

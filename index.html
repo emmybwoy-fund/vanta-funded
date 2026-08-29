@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Vanta Funded - Turn Your Trading Skills Into Income</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-fixed bg-cover bg-center bg-no-repeat text-slate-900 min-h-screen font-sans relative overflow-x-hidden" style="background-image: url('image.png');">
+
+    <!-- Oversized Ultra-Stretched Fixed Background Logo Layer -->
+    <div class="fixed inset-0 w-screen h-screen z-0 pointer-events-none opacity-20 overflow-hidden flex items-center justify-center">
+        <img src="logo.png" alt="VF Background" class="w-full h-full object-fill scale-150 md:scale-200 lg:scale-250 origin-center transform">
+    </div>
+
+    <!-- Sticky Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/40 shadow-sm transition-all">
+        <div class="w-[96%] xl:w-[98%] mx-auto px-6 py-3 flex items-center justify-between">
+            <!-- Header Left Container (Brand + FAQs Link) -->
+            <div class="flex items-center space-x-4">
+                <!-- Header Brand Section (Pure CSS Badge) -->
+                <div class="flex items-center space-x-3 bg-white/70 backdrop-blur-md border border-white/80 px-3 py-1.5 rounded-2xl shadow-sm">
+                    <div class="bg-slate-950 text-sky-400 font-extrabold text-sm h-8 px-3 rounded-xl flex items-center justify-center tracking-tight shadow-inner">
+                        VF
+                    </div>
+                    <span id="brand-name" class="font-bold text-lg tracking-tight text-slate-900">Vanta Funded</span>
+                </div>
+
+                <!-- FAQs Navigation Link with Smooth Scroll -->
+                <a href="#faqs" id="nav-faqs" class="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors px-3 py-1.5 rounded-xl hover:bg-white/50">
+                    FAQs
+                </a>
+            </div>
+
+            <!-- Top Right Elements (Language Selector & Login Button) -->
+            <div class="flex items-center space-x-4">
+                <!-- Language Dropdown Container -->
+                <div class="relative">
+                    <button id="langMenuButton" onclick="toggleLangMenu()" class="flex items-center space-x-1 text-sm font-semibold text-slate-800 hover:text-slate-600 transition focus:outline-none">
+                        <span id="currentLang">EN</span>
+                        <svg id="langArrow" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Vertical Language Options -->
+                    <div id="langDropdown" class="hidden absolute right-0 mt-2 w-36 bg-white border border-slate-200 rounded-xl shadow-lg py-1 z-30">
+                        <button onclick="changeLanguage('EN')" class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 font-medium">English (EN)</button>
+                        <button onclick="changeLanguage('FR')" class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 font-medium">Français (FR)</button>
+                        <button onclick="changeLanguage('ES')" class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 font-medium">Español (ES)</button>
+                        <button onclick="changeLanguage('DE')" class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 font-medium">Deutsch (DE)</button>
+                    </div>
+                </div>
+
+                <!-- Direct File Navigation Login Button -->
+                <a href="login.html" id="login-btn" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition shadow-sm inline-block">
+                    Login
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero & Content Main Wrapper -->
+    <main class="w-full mx-auto px-6 pt-12 pb-16 text-left relative z-10">
+        <div class="w-[96%] xl:w-[98%] mx-auto space-y-16">
+            
+            <!-- Hero Top Row -->
+            <div>
+                <!-- Left-Aligned Title -->
+                <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6">
+                    Scale your trading <br class="hidden sm:inline">capital and earn rewards
+                </h1>
+
+                <!-- Left-Aligned Description -->
+                <p id="hero-desc" class="text-lg text-slate-700 mb-8 max-w-xl font-medium">
+                    Join traders worldwide scaling their capital with Vanta Funded, the industry-leading evaluation firm.
+                </p>
+
+                <!-- Left-Aligned Get Started Button Container -->
+                <div class="max-w-xs mb-16">
+                    <button id="get-started-btn" onclick="scrollToChallenge()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium px-8 py-4 rounded-xl transition shadow-xl flex items-center justify-center gap-2">
+                        Get Started &rarr;
+                    </button>
+                </div>
+
+                <!-- Banner Section -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left">
+                    
+                    <!-- Left Info & Feature Cards -->
+                    <div class="md:col-span-7 space-y-6">
+                        <h2 id="standard-heading" class="text-2xl md:text-3xl font-bold text-slate-900">
+                            The New Standard in Funded Trading
+                        </h2>
+                        <p id="updated-statement" class="text-slate-600 text-sm md:text-base leading-relaxed">
+                            Achieve financial freedom by managing your prop firm, and a clear path to success.
+                        </p>
+
+                        <!-- 3 Mini Feature Boxes -->
+                        <div class="grid grid-cols-3 gap-3 pt-2">
+                            <div class="bg-white/90 border border-slate-200/90 p-4 rounded-xl shadow-sm">
+                                <p id="feat-1-lbl" class="text-[11px] text-slate-500 font-medium tracking-wide">Capital Up to</p>
+                                <p class="text-lg font-bold text-slate-900 mt-0.5">$600k</p>
+                            </div>
+                            <div class="bg-white/90 border border-slate-200/90 p-4 rounded-xl shadow-sm">
+                                <p id="feat-2-lbl" class="text-[11px] text-slate-500 font-medium tracking-wide">Flexible</p>
+                                <p id="feat-2-val" class="text-lg font-bold text-slate-900 mt-0.5">Payouts</p>
+                            </div>
+                            <div class="bg-white/90 border border-slate-200/90 p-4 rounded-xl shadow-sm">
+                                <p id="feat-3-lbl" class="text-[11px] text-slate-500 font-medium tracking-wide">No Hidden</p>
+                                <p id="feat-3-val" class="text-lg font-bold text-slate-900 mt-0.5">Rules</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Glassmorphic Stats Card -->
+                    <div class="md:col-span-5">
+                        <div class="bg-gradient-to-br from-white/90 via-teal-900/5 to-cyan-900/10 backdrop-blur-xl border border-white/80 p-6 md:p-8 rounded-2xl shadow-lg relative overflow-hidden">
+                            <div>
+                                <p id="stats-deployed-lbl" class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Total Capital Deployed:</p>
+                                <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">$45,500,000</h3>
+                            </div>
+
+                            <!-- Glowing Chart Line Graphic -->
+                            <div class="h-24 w-full relative flex items-end pt-3">
+                                <svg class="absolute inset-0 w-full h-full text-teal-500 overflow-visible" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 300 100">
+                                    <path d="M0 80 Q 75 35, 150 50 T 300 10" stroke-linecap="round" />
+                                </svg>
+                                <div class="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-teal-500/20 to-transparent pointer-events-none"></div>
+                            </div>
+
+                            <div class="pt-4 mt-2 border-t border-slate-200/60">
+                                <p id="stats-payouts-lbl" class="text-[11px] text-slate-500 font-medium">Trader Payouts This Month:</p>
+                                <p class="text-lg font-bold text-slate-900 mt-0.5">$2,120,430</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- How It Works Section -->
+            <section class="py-4">
+                <!-- Section Header -->
+                <div class="mb-8">
+                    <h2 id="process-heading" class="text-2xl md:text-3xl font-bold text-slate-900">The Process</h2>
+                    <p id="process-desc" class="text-slate-600 text-sm md:text-base mt-1">Zero guesswork, clear rules. Here is your blueprint to funding.</p>
+                </div>
+
+                <!-- 3 Process Cards Layout Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Card 1: Evaluation Tier -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+                        <div>
+                            <span id="proc-1-tag" class="text-xs font-bold text-slate-400 uppercase tracking-wider">01 Evaluation Tier</span>
+                            <h3 id="proc-1-title" class="text-xl font-bold text-slate-900 mt-2 mb-2">Buy / Purchase your account</h3>
+                            <p id="proc-1-desc" class="text-xs text-slate-600 leading-relaxed mb-6">
+                                Use your trading strategy under straightforward evaluation milestones. No hidden catches – just a transparent environment designed for consistent execution.
+                            </p>
+                        </div>
+
+                        <!-- Metric List -->
+                        <div class="space-y-3 pt-2 border-t border-slate-100">
+                            <div class="flex items-center justify-between text-xs">
+                                <span id="m-target-lbl" class="text-slate-800">Target Profit Goal</span>
+                                <span id="m-target-val" class="text-emerald-600 font-bold flex items-center gap-1">
+                                    Verified
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span id="m-daily-lbl" class="text-slate-800">Daily Drawdown Cap</span>
+                                <span id="m-daily-val" class="text-emerald-600 font-bold flex items-center gap-1">
+                                    Protected
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span id="m-maxloss-lbl" class="text-slate-800">Maximum Overall Loss Limit</span>
+                                <span id="m-maxloss-val" class="text-emerald-600 font-bold flex items-center gap-1">
+                                    Controlled
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span id="m-activity-lbl" class="text-slate-800">Minimum Activity Requirement</span>
+                                <span id="m-activity-val" class="text-emerald-600 font-bold flex items-center gap-1">
+                                    Active
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Payout Structure -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+                        <div>
+                            <span id="proc-2-tag" class="text-xs font-bold text-slate-400 uppercase tracking-wider">02 Payout Structure</span>
+                            <h3 id="proc-2-title" class="text-xl font-bold text-slate-900 mt-2 mb-2">Get Paid Instantly</h3>
+                            <p id="proc-2-desc" class="text-xs text-slate-600 leading-relaxed mb-6">
+                                Retain up to 90% of your generated profits with fast, reliable payouts. Join a community that has already unlocked millions in trader distributions.
+                            </p>
+                        </div>
+                        <div class="bg-blue-600 text-white rounded-xl p-5 text-center shadow-md">
+                            <p class="text-3xl font-extrabold">$150M+</p>
+                            <p id="proc-2-badge" class="text-xs text-blue-100 mt-1">Total Distributed to traders</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Growth Blueprint -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+                        <div>
+                            <span id="proc-3-tag" class="text-xs font-bold text-slate-400 uppercase tracking-wider">03 Growth Blueprint</span>
+                            <h3 id="proc-3-title" class="text-xl font-bold text-slate-900 mt-2 mb-2">Expand Your Portfolio</h3>
+                            <p id="proc-3-desc" class="text-xs text-slate-600 leading-relaxed mb-6">
+                                Scale your capital tier progressively starting from your base allocation up to top-tier funding limits, backed by ongoing performance rewards.
+                            </p>
+                        </div>
+
+                        <!-- Growth Bar Chart Visual -->
+                        <div class="flex items-end justify-between gap-2 pt-6 px-2">
+                            <div class="flex flex-col items-center gap-1">
+                                <span class="text-[10px] text-slate-400 font-semibold">$10k</span>
+                                <div class="w-6 h-8 bg-blue-100 rounded-sm"></div>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <span class="text-[10px] text-slate-400 font-semibold">$25k</span>
+                                <div class="w-6 h-12 bg-blue-100 rounded-sm"></div>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <span class="text-[10px] text-slate-400 font-semibold">$50k</span>
+                                <div class="w-6 h-16 bg-blue-100 rounded-sm"></div>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <span class="text-[10px] text-slate-400 font-semibold">$100k</span>
+                                <div class="w-6 h-24 bg-blue-100 rounded-sm"></div>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <span class="text-[10px] text-blue-600 font-bold">$1.5M</span>
+                                <div class="w-6 h-32 bg-blue-600 rounded-sm shadow-md"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Prop Firm Challenge Selection Section -->
+            <section id="challenge-section" class="py-8 bg-[#0F172A] rounded-2xl border border-slate-800 p-6 md:p-8 shadow-2xl scroll-mt-24">
+                <div class="text-center max-w-xl mx-auto mb-6">
+                    <h2 id="chal-heading" class="text-2xl md:text-3xl font-extrabold text-white">Select Your Challenge</h2>
+                    <p id="chal-sub" class="text-slate-400 text-sm mt-1">Choose your preferred tier model and account size to start trading.</p>
+                </div>
+
+                <!-- Toggle Switch for Zero-Step vs Two-Step -->
+                <div class="max-w-xs mx-auto bg-[#1E293B] p-1 rounded-xl flex items-center mb-4">
+                    <button id="zero-step-btn" onclick="setChallengeMode(true)" class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors bg-blue-600 text-white">
+                        Zero-Step
+                    </button>
+                    <button id="two-step-btn" onclick="setChallengeMode(false)" class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors text-slate-400 hover:text-white">
+                        Two-Step
+                    </button>
+                </div>
+
+                <!-- Rules Summary Banner -->
+                <div class="text-center mb-8">
+                    <p id="challenge-rules-text" class="text-xs text-slate-400 font-medium">
+                        Rules: Daily Loss: 6% | Max Loss: 5% | Consistency: 20% | Min Days: 10
+                    </p>
+                </div>
+
+                <!-- Horizontal Scrollable Pricing Cards Container -->
+                <div id="pricing-tiers-container" class="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-700">
+                    <!-- Cards dynamically populated via JS -->
+                </div>
+            </section>
+
+            <!-- FAQs Section at Bottom -->
+            <section id="faqs" class="py-12 pt-16 border-t border-slate-200/60 scroll-mt-24">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-10">
+                        <span id="faq-tag" class="text-xs font-bold text-blue-600 uppercase tracking-wider">Got Questions?</span>
+                        <h2 id="faq-heading" class="text-3xl font-extrabold text-slate-900 mt-1">Frequently Asked Questions</h2>
+                        <p id="faq-sub" class="text-slate-600 text-sm mt-2">Everything you need to know about trading with Vanta Funded.</p>
+                    </div>
+
+                    <!-- Accordion Items -->
+                    <div class="space-y-4">
+                        
+                        <!-- Question 1 -->
+                        <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm transition">
+                            <button onclick="toggleFaq('faq-1', 'arrow-1')" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-slate-900 text-base focus:outline-none">
+                                <span id="q1-title">How does the evaluation process work?</span>
+                                <svg id="arrow-1" class="w-5 h-5 text-slate-500 transition-transform duration-200 transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="faq-1" class="hidden px-6 pb-4 text-xs md:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                <span id="q1-ans">Select your preferred capital size, reach the target profit goal while staying within the protected daily and total loss limits, and pass the evaluation to earn your live funded account.</span>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm transition">
+                            <button onclick="toggleFaq('faq-2', 'arrow-2')" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-slate-900 text-base focus:outline-none">
+                                <span id="q2-title">How quickly can I request a payout?</span>
+                                <svg id="arrow-2" class="w-5 h-5 text-slate-500 transition-transform duration-200 transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="faq-2" class="hidden px-6 pb-4 text-xs md:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                <span id="q2-ans">Payouts can be requested on a flexible schedule after your first eligible trading cycle. Distributions are processed swiftly via crypto or direct bank wire.</span>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm transition">
+                            <button onclick="toggleFaq('faq-3', 'arrow-3')" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-slate-900 text-base focus:outline-none">
+                                <span id="q3-title">What is the profit split ratio?</span>
+                                <svg id="arrow-3" class="w-5 h-5 text-slate-500 transition-transform duration-200 transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="faq-3" class="hidden px-6 pb-4 text-xs md:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                <span id="q3-ans">Traders keep up to 90% of all generated profits once funded. Higher-tier scaling plans unlock additional performance perks and bonuses.</span>
+                            </div>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm transition">
+                            <button onclick="toggleFaq('faq-4', 'arrow-4')" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-slate-900 text-base focus:outline-none">
+                                <span id="q4-title">Are weekend holding or news trading allowed?</span>
+                                <svg id="arrow-4" class="w-5 h-5 text-slate-500 transition-transform duration-200 transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="faq-4" class="hidden px-6 pb-4 text-xs md:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                <span id="q4-ans">Yes! Vanta Funded provides maximum flexibility for traders, allowing news trading and weekend holding on most account types.</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Disclaimer & Legal Footer -->
+    <footer class="relative z-10 bg-slate-950 border-t border-slate-800 text-slate-400 py-12 px-6">
+        <div class="w-[96%] xl:w-[98%] mx-auto space-y-8">
+            <h3 id="footer-disc-title" class="text-white font-bold text-base tracking-wide uppercase">Important Information & Disclaimer</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs leading-relaxed">
+                <div>
+                    <h4 id="f-box1-h" class="text-slate-200 font-semibold mb-1">Simulated Trading Environment</h4>
+                    <p id="f-box1-p">All accounts at Vanta Funded are strictly demo accounts in a simulated environment. No live trades are executed. Services are solely for evaluation and educational purposes.</p>
+                </div>
+                <div>
+                    <h4 id="f-box2-h" class="text-slate-200 font-semibold mb-1">No Investment Services</h4>
+                    <p id="f-box2-p">Vanta Funded Corp does not provide investment advice, act as a broker or custodian, or solicit the buying or selling of financial instruments. All content is strictly informational.</p>
+                </div>
+                <div>
+                    <h4 id="f-box3-h" class="text-slate-200 font-semibold mb-1">Fee Policy</h4>
+                    <p id="f-box3-p">Program fees are non-refundable service fees used for operational, tech, and administrative costs. They are not investments, deposits, or client funds, and yield no returns or profit sharing.</p>
+                </div>
+                <div>
+                    <h4 id="f-box4-h" class="text-slate-200 font-semibold mb-1">Risk Warning</h4>
+                    <p id="f-box4-p">Trading carries high financial risk. Performance in simulated, leveraged environments does not guarantee live market results.</p>
+                </div>
+                <div class="md:col-span-2 lg:col-span-2">
+                    <h4 id="f-box5-h" class="text-slate-200 font-semibold mb-1">Corporate Details & Restrictions</h4>
+                    <p id="f-box5-p">Vanta Funded Corp holds an International Brokerage and Clearing House License in the Comoros Union (License BFX2024004) solely for simulated programs, with support entities in Cyprus and Dubai. Services are restricted in FATF/EU/UN sanctioned regions, Vietnam, and the UAE.</p>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p id="copy-text">&copy; 2026 Vanta Funded. All rights reserved.</p>
+                <p id="built-text">Built with ❤️ by Traders for Traders</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dynamic Complete Multi-Language Support -->
+    <script>
+        const translations = {
+            EN: {
+                title: "Vanta Funded - Turn Your Trading Skills Into Income",
+                brand: "Vanta Funded",
+                navFaqs: "FAQs",
+                login: "Login",
+                heroTitle: "Scale your trading <br class='hidden sm:inline'>capital and earn rewards",
+                heroDesc: "Join traders worldwide scaling their capital with Vanta Funded, the industry-leading evaluation firm.",
+                getStarted: "Get Started &rarr;",
+                standardHeading: "The New Standard in Funded Trading",
+                statement: "Achieve financial freedom by managing your prop firm, and a clear path to success.",
+                feat1Lbl: "Capital Up to",
+                feat2Lbl: "Flexible",
+                feat2Val: "Payouts",
+                feat3Lbl: "No Hidden",
+                feat3Val: "Rules",
+                statsDeployedLbl: "Total Capital Deployed:",
+                statsPayoutsLbl: "Trader Payouts This Month:",
+                processHeading: "The Process",
+                processDesc: "Zero guesswork, clear rules. Here is your blueprint to funding.",
+                proc1Tag: "01 Evaluation Tier",
+                proc1Title: "Buy / Purchase your account",
+                proc1Desc: "Use your trading strategy under straightforward evaluation milestones. No hidden catches – just a transparent environment designed for consistent execution.",
+                mTargetLbl: "Target Profit Goal",
+                mTargetVal: "Verified",
+                mDailyLbl: "Daily Drawdown Cap",
+                mDailyVal: "Protected",
+                mMaxlossLbl: "Maximum Overall Loss Limit",
+                mMaxlossVal: "Controlled",
+                mActivityLbl: "Minimum Activity Requirement",
+                mActivityVal: "Active",
+                proc2Tag: "02 Payout Structure",
+                proc2Title: "Get Paid Instantly",
+                proc2Desc: "Retain up to 90% of your generated profits with fast, reliable payouts. Join a community that has already unlocked millions in trader distributions.",
+                proc2Badge: "Total Distributed to traders",
+                proc3Tag: "03 Growth Blueprint",
+                proc3Title: "Expand Your Portfolio",
+                proc3Desc: "Scale your capital tier progressively starting from your base allocation up to top-tier funding limits, backed by ongoing performance rewards.",
+                chalHeading: "Select Your Challenge",
+                chalSub: "Choose your preferred tier model and account size to start trading.",
+                zeroStepBtn: "Zero-Step",
+                twoStepBtn: "Two-Step",
+                faqTag: "Got Questions?",
+                faqHeading: "Frequently Asked Questions",
+                faqSub: "Everything you need to know about trading with Vanta Funded.",
+                q1Title: "How does the evaluation process work?",
+                q1Ans: "Select your preferred capital size, reach the target profit goal while staying within the protected daily and total loss limits, and pass the evaluation to earn your live funded account.",
+                q2Title: "How quickly can I request a payout?",
+                q2Ans: "Payouts can be requested on a flexible schedule after your first eligible trading cycle. Distributions are processed swiftly via crypto or direct bank wire.",
+                q3Title: "What is the profit split ratio?",
+                q3Ans: "Traders keep up to 90% of all generated profits once funded. Higher-tier scaling plans unlock additional performance perks and bonuses.",
+                q4Title: "Are weekend holding or news trading allowed?",
+                q4Ans: "Yes! Vanta Funded provides maximum flexibility for traders, allowing news trading and weekend holding on most account types.",
+                footerDiscTitle: "Important Information & Disclaimer",
+                fBox1H: "Simulated Trading Environment",
+                fBox1P: "All accounts at Vanta Funded are strictly demo accounts in a simulated environment. No live trades are executed. Services are solely for evaluation and educational purposes.",
+                fBox2H: "No Investment Services",
+                fBox2P: "Vanta Funded Corp does not provide investment advice, act as a broker or custodian, or solicit the buying or selling of financial instruments. All content is strictly informational.",
+                fBox3H: "Fee Policy",
+                fBox3P: "Program fees are non-refundable service fees used for operational, tech, and administrative costs. They are not investments, deposits, or client funds, and yield no returns or profit sharing.",
+                fBox4H: "Risk Warning",
+                fBox4P: "Trading carries high financial risk. Performance in simulated, leveraged environments does not guarantee live market results.",
+                fBox5H: "Corporate Details & Restrictions",
+                fBox5P: "Vanta Funded Corp holds an International Brokerage and Clearing House License in the Comoros Union (License BFX2024004) solely for simulated programs, with support entities in Cyprus and Dubai. Services are restricted in FATF/EU/UN sanctioned regions, Vietnam, and the UAE.",
+                copyText: "&copy; 2026 Vanta Funded. All rights reserved.",
+                builtText: "Built with ❤️ by Traders for Traders",
+                accountSizeLbl: "Account Size",
+                priceLbl: "Price",
+                maxLossLbl: "Max Loss:",
+                dailyLossLbl: "Daily Loss:",
+                minDaysLbl: "Min Trading Days:",
+                selectBtnText: "Select",
+                popularBadge: "Most Popular"
+            },
+            FR: {
+                title: "Vanta Funded - Transformez vos compétences en trading en revenus",
+                brand: "Vanta Funded",
+                navFaqs: "FAQ",
+                login: "Connexion",
+                heroTitle: "Augmentez votre capital <br class='hidden sm:inline'>de trading et gagnez des récompenses",
+                heroDesc: "Rejoignez des traders du monde entier qui font croître leur capital avec Vanta Funded, la société d'évaluation leader du secteur.",
+                getStarted: "Commencer &rarr;",
+                standardHeading: "La nouvelle norme du trading financé",
+                statement: "Atteignez la liberté financière en gérant votre propre entreprise de trading avec un chemin clair vers le succès.",
+                feat1Lbl: "Capital jusqu'à",
+                feat2Lbl: "Paiements",
+                feat2Val: "Flexibles",
+                feat3Lbl: "Sans règles",
+                feat3Val: "Cachées",
+                statsDeployedLbl: "Capital total déployé :",
+                statsPayoutsLbl: "Paiements aux traders ce mois-ci :",
+                processHeading: "Le Processus",
+                processDesc: "Zéro devinette, des règles claires. Voici votre plan pour obtenir des fonds.",
+                proc1Tag: "01 Niveau d'évaluation",
+                proc1Title: "Achetez / Commandez votre compte",
+                proc1Desc: "Utilisez votre stratégie de trading avec des jalons d'évaluation simples. Pas de pièges cachés – juste un environnement transparent.",
+                mTargetLbl: "Objectif de profit",
+                mTargetVal: "Vérifié",
+                mDailyLbl: "Plafond de perte journalière",
+                mDailyVal: "Protégé",
+                mMaxlossLbl: "Limite de perte globale maximale",
+                mMaxlossVal: "Contrôlé",
+                mActivityLbl: "Exigence d'activité minimum",
+                mActivityVal: "Actif",
+                proc2Tag: "02 Structure des paiements",
+                proc2Title: "Soyez payé instantanément",
+                proc2Desc: "Conservez jusqu'à 90 % de vos profits générés avec des paiements rapides et fiables.",
+                proc2Badge: "Total distribué aux traders",
+                proc3Tag: "03 Plan de croissance",
+                proc3Title: "Élargissez votre portefeuille",
+                proc3Desc: "Faites progresser votre niveau de capital à partir de votre allocation de base jusqu'aux limites supérieures.",
+                chalHeading: "Sélectionnez votre défi",
+                chalSub: "Choisissez votre modèle de niveau préféré et la taille de compte pour commencer.",
+                zeroStepBtn: "Sans étape",
+                twoStepBtn: "Deux étapes",
+                faqTag: "Des questions ?",
+                faqHeading: "Foire Aux Questions",
+                faqSub: "Tout ce que vous devez savoir sur le trading avec Vanta Funded.",
+                q1Title: "Comment fonctionne le processus d'évaluation ?",
+                q1Ans: "Sélectionnez votre taille de capital, atteignez l'objectif de profit tout en respectant les limites de perte et passez l'évaluation.",
+                q2Title: "À quelle rapidité puis-je demander un paiement ?",
+                q2Ans: "Les paiements peuvent être demandés selon un calendrier flexible après votre premier cycle de trading éligible.",
+                q3Title: "Quel est le ratio de partage des profits ?",
+                q3Ans: "Les traders conservent jusqu'à 90 % de tous les profits générés une fois financés.",
+                q4Title: "La détention le week-end ou le trading sur actualités sont-ils autorisés ?",
+                q4Ans: "Oui ! Vanta Funded offre une flexibilité maximale autorisant le trading sur actualités et la détention le week-end.",
+                footerDiscTitle: "Informations importantes et avertissement",
+                fBox1H: "Environnement de trading simulé",
+                fBox1P: "Tous les comptes chez Vanta Funded sont strictement des comptes démo dans un environnement simulé.",
+                fBox2H: "Aucun service d'investissement",
+                fBox2P: "Vanta Funded Corp ne fournit pas de conseils en investissement et n'agit pas en tant que courtier.",
+                fBox3H: "Politique de frais",
+                fBox3P: "Les frais de programme sont des frais de service non remboursables utilisés pour les coûts opérationnels.",
+                fBox4H: "Avertissement sur les risques",
+                fBox4P: "Le trading comporte des risques financiers élevés. Les performances simulées ne garantissent pas les résultats réels.",
+                fBox5H: "Détails de l'entreprise et restrictions",
+                fBox5P: "Vanta Funded Corp détient une licence de courtage international dans l'Union des Comores.",
+                copyText: "&copy; 2026 Vanta Funded. Tous droits réservés.",
+                builtText: "Créé avec ❤️ par des traders pour des traders",
+                accountSizeLbl: "Taille du compte",
+                priceLbl: "Prix",
+                maxLossLbl: "Perte max :",
+                dailyLossLbl: "Perte journalière :",
+                minDaysLbl: "Jours de trading min :",
+                selectBtnText: "Sélectionner",
+                popularBadge: "Le plus populaire"
+            },
+            ES: {
+                title: "Vanta Funded - Convierte tus habilidades de trading en ingresos",
+                brand: "Vanta Funded",
+                navFaqs: "FAQs",
+                login: "Iniciar sesión",
+                heroTitle: "Escala tu capital <br class='hidden sm:inline'>de trading y gana recompensas",
+                heroDesc: "Únete a traders de todo el mundo que escalan su capital con Vanta Funded, la firma líder.",
+                getStarted: "Empezar &rarr;",
+                standardHeading: "El nuevo estándar en el trading financiado",
+                statement: "Logra la libertad financiera gestionando tu empresa de fondeo con un camino claro.",
+                feat1Lbl: "Capital de hasta",
+                feat2Lbl: "Pagos",
+                feat2Val: "Flexibles",
+                feat3Lbl: "Sin reglas",
+                feat3Val: "Ocultas",
+                statsDeployedLbl: "Capital total desplegado:",
+                statsPayoutsLbl: "Pagos a traders este mes:",
+                processHeading: "El Proceso",
+                processDesc: "Sin conjeturas, reglas claras. Aquí tienes tu plan hacia el fondeo.",
+                proc1Tag: "01 Nivel de evaluación",
+                proc1Title: "Compra / Adquiere tu cuenta",
+                proc1Desc: "Usa tu estrategia de trading bajo hitos de evaluación sencillos. Sin trampas ocultas.",
+                mTargetLbl: "Objetivo de beneficio",
+                mTargetVal: "Verificado",
+                mDailyLbl: "Lope de pérdida diaria",
+                mDailyVal: "Protegido",
+                mMaxlossLbl: "Límite máximo de pérdida total",
+                mMaxlossVal: "Controlado",
+                mActivityLbl: "Requisito de actividad mínima",
+                mActivityVal: "Activo",
+                proc2Tag: "02 Estructura de pagos",
+                proc2Title: "Recibe pagos al instante",
+                proc2Desc: "Conserva hasta el 90% de tus beneficios generados con pagos rápidos y fiables.",
+                proc2Badge: "Total distribuido a traders",
+                proc3Tag: "03 Plan de crecimiento",
+                proc3Title: "Expande tu portafolio",
+                proc3Desc: "Escala tu nivel de capital progresivamente desde tu asignación base hasta los límites superiores.",
+                chalHeading: "Selecciona tu desafío",
+                chalSub: "Elige tu modelo de nivel preferido y el tamaño de cuenta para empezar.",
+                zeroStepBtn: "Sin pasos",
+                twoStepBtn: "Dos pasos",
+                faqTag: "¿Tienes preguntas?",
+                faqHeading: "Preguntas Frecuentes",
+                faqSub: "Todo lo que necesitas saber sobre operar con Vanta Funded.",
+                q1Title: "¿Cómo funciona el proceso de evaluación?",
+                q1Ans: "Selecciona tu tamaño de capital preferido, alcanza el objetivo de beneficio y supera la evaluación.",
+                q2Title: "¿Qué tan rápido puedo solicitar un pago?",
+                q2Ans: "Los pagos se pueden solicitar en un horario flexible después de tu primer ciclo de trading elegible.",
+                q3Title: "¿Cuál es el ratio de reparto de beneficios?",
+                q3Ans: "Los traders se quedan hasta con el 90% de todos los beneficios generados una vez financiados.",
+                q4Title: "¿Se permite mantener operaciones el fin de semana o operar noticias?",
+                q4Ans: "¡Sí! Vanta Funded ofrece la máxima flexibilidad permitiendo operar noticias y mantener operaciones.",
+                footerDiscTitle: "Información importante y descargo de responsabilidad",
+                fBox1H: "Entorno de trading simulado",
+                fBox1P: "Todas las cuentas en Vanta Funded son estrictamente cuentas demo en un entorno simulado.",
+                fBox2H: "Sin servicios de inversión",
+                fBox2P: "Vanta Funded Corp no proporciona asesoramiento de inversión ni actúa como corredor.",
+                fBox3H: "Política de tarifas",
+                fBox3P: "Las tarifas de los programas son tarifas de servicio no reembolsables utilizadas para costos operativos.",
+                fBox4H: "Advertencia de riesgo",
+                fBox4P: "El trading conlleva un alto riesgo financiero. Los resultados simulados no garantizan resultados reales.",
+                fBox5H: "Detalles corporativos y restricciones",
+                fBox5P: "Vanta Funded Corp posee una Licencia de Corretaje Internacional en la Unión de las Comoras.",
+                copyText: "&copy; 2026 Vanta Funded. Todos los derechos reservados.",
+                builtText: "Creado con ❤️ por traders para traders",
+                accountSizeLbl: "Tamaño de cuenta",
+                priceLbl: "Precio",
+                maxLossLbl: "Pérdida máx:",
+                dailyLossLbl: "Pérdida diaria:",
+                minDaysLbl: "Días mín de trading:",
+                selectBtnText: "Seleccionar",
+                popularBadge: "Más Popular"
+            },
+            DE: {
+                title: "Vanta Funded - Verwandeln Sie Ihre Trading-Fähigkeiten in Einkommen",
+                brand: "Vanta Funded",
+                navFaqs: "FAQs",
+                login: "Anmelden",
+                heroTitle: "Skalieren Sie Ihr Trading-Kapital <br class='hidden sm:inline'>und verdienen Sie Belohnungen",
+                heroDesc: "Schließen Sie sich Tradern weltweit an, die ihr Kapital mit Vanta Funded skalieren.",
+                getStarted: "Loslegen &rarr;",
+                standardHeading: "Der neue Standard im geförderten Trading",
+                statement: "Erreichen Sie finanzielle Freiheit durch die Verwaltung Ihrer Prop-Trading-Firma.",
+                feat1Lbl: "Kapital bis zu",
+                feat2Lbl: "Flexible",
+                feat2Val: "Auszahlungen",
+                feat3Lbl: "Keine versteckten",
+                feat3Val: "Regeln",
+                statsDeployedLbl: "Gesamtes bereitgestelltes Kapital:",
+                statsPayoutsLbl: "Trader-Auszahlungen diesen Monat:",
+                processHeading: "Der Prozess",
+                processDesc: "Kein Rätselraten, klare Regeln. Hier ist Ihr Blueprint für die Finanzierung.",
+                proc1Tag: "01 Evaluierungsstufe",
+                proc1Title: "Kaufen Sie Ihr Konto",
+                proc1Desc: "Nutzen Sie Ihre Handelsstrategie unter unkomplizierten Evaluierungsmeilensteinen.",
+                mTargetLbl: "Gewinnziel",
+                mTargetVal: "Verifiziert",
+                mDailyLbl: "Tägliches Drawdown-Limit",
+                mDailyVal: "Geschützt",
+                mMaxlossLbl: "Maximales Gesamtverlustlimit",
+                mMaxlossVal: "Kontrolliert",
+                mActivityLbl: "Mindestaktivitätsanforderung",
+                mActivityVal: "Aktiv",
+                proc2Tag: "02 Auszahlungsstruktur",
+                proc2Title: "Sofort bezahlt werden",
+                proc2Desc: "Behalten Sie bis zu 90% Ihrer generierten Gewinne mit schnellen, zuverlässigen Auszahlungen.",
+                proc2Badge: "An Trader ausgeschüttet",
+                proc3Tag: "03 Wachstums-Blueprint",
+                proc3Title: "Erweitern Sie Ihr Portfolio",
+                proc3Desc: "Skalieren Sie Ihr Kapital stufenweise von Ihrer Basiszuweisung bis zu den Top-Finanzierungslimits.",
+                chalHeading: "Wählen Sie Ihre Challenge",
+                chalSub: "Wählen Sie Ihr bevorzugtes Stufenmodell und die Kontogröße aus.",
+                zeroStepBtn: "Null Schritte",
+                twoStepBtn: "Zwei Schritte",
+                faqTag: "Fragen?",
+                faqHeading: "Häufig gestellte Fragen",
+                faqSub: "Alles, was Sie über das Trading mit Vanta Funded wissen müssen.",
+                q1Title: "Wie funktioniert der Evaluierungsprozess?",
+                q1Ans: "Wählen Sie Ihre Kapitalgröße, erreichen Sie das Gewinnziel innerhalb der Verlustlimits und bestehen Sie.",
+                q2Title: "Wie schnell kann ich eine Auszahlung beantragen?",
+                q2Ans: "Auszahlungen können nach Ihrem ersten berechtigten Handelszyklus flexibel angefordert werden.",
+                q3Title: "Wie hoch ist die Gewinnaufteilung?",
+                q3Ans: "Trader behalten bis zu 90% aller generierten Gewinne nach der Finanzierung.",
+                q4Title: "Sind Wochenendhalten oder Nachrichtenhandel erlaubt?",
+                q4Ans: "Ja! Vanta Funded bietet maximale Flexibilität für Nachrichtenhandel und Wochenendpositionen.",
+                footerDiscTitle: "Wichtige Informationen & Haftungsausschluss",
+                fBox1H: "Simulierte Handelsumgebung",
+                fBox1P: "Alle Konten bei Vanta Funded sind reine Demokonten in einer simulierten Umgebung.",
+                fBox2H: "Keine Baudienstleistungen / Investitionen",
+                fBox2P: "Vanta Funded Corp bietet keine Anlageberatung an und agiert nicht als Broker.",
+                fBox3H: "Gebührenrichtlinie",
+                fBox3P: "Programmgebühren sind nicht erstattungsfähige Servicegebühren für Betriebs- und Verwaltungskosten.",
+                fBox4H: "Risikowarnung",
+                fBox4P: "Trading ist mit hohen Finanzrisiken verbunden. Simulierte Ergebnisse garantieren keine Live-Ergebnisse.",
+                fBox5H: "Unternehmensdetails & Einschränkungen",
+                fBox5P: "Vanta Funded Corp besitzt eine internationale Maklerlizenz in der Union der Komoren.",
+                copyText: "&copy; 2026 Vanta Funded. Alle Rechte vorbehalten.",
+                builtText: "Mit ❤️ von Tradern für Trader entwickelt",
+                accountSizeLbl: "Kontogröße",
+                priceLbl: "Preis",
+                maxLossLbl: "Max. Verlust:",
+                dailyLossLbl: "Täg. Verlust:",
+                minDaysLbl: "Min. Handelstage:",
+                selectBtnText: "Auswählen",
+                popularBadge: "Am Beliebtesten"
+            }
+        };
+
+        function scrollToChallenge() {
+            document.getElementById('challenge-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleLangMenu() {
+            const dropdown = document.getElementById('langDropdown');
+            const arrow = document.getElementById('langArrow');
+            dropdown.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+
+        let currentLangCode = 'EN';
+
+        function changeLanguage(langCode) {
+            currentLangCode = langCode;
+            document.getElementById('currentLang').innerText = langCode;
+            const t = translations[langCode];
+            
+            document.getElementById('page-title').innerText = t.title;
+            document.getElementById('brand-name').innerText = t.brand;
+            document.getElementById('nav-faqs').innerText = t.navFaqs;
+            document.getElementById('login-btn').innerText = t.login;
+            document.getElementById('hero-title').innerHTML = t.heroTitle;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('get-started-btn').innerHTML = t.getStarted;
+            document.getElementById('standard-heading').innerText = t.standardHeading;
+            document.getElementById('updated-statement').innerText = t.statement;
+            
+            document.getElementById('feat-1-lbl').innerText = t.feat1Lbl;
+            document.getElementById('feat-2-lbl').innerText = t.feat2Lbl;
+            document.getElementById('feat-2-val').innerText = t.feat2Val;
+            document.getElementById('feat-3-lbl').innerText = t.feat3Lbl;
+            document.getElementById('feat-3-val').innerText = t.feat3Val;
+
+            document.getElementById('stats-deployed-lbl').innerText = t.statsDeployedLbl;
+            document.getElementById('stats-payouts-lbl').innerText = t.statsPayoutsLbl;
+
+            document.getElementById('process-heading').innerText = t.processHeading;
+            document.getElementById('process-desc').innerText = t.processDesc;
+
+            document.getElementById('proc-1-tag').innerText = t.proc1Tag;
+            document.getElementById('proc-1-title').innerText = t.proc1Title;
+            document.getElementById('proc-1-desc').innerText = t.proc1Desc;
+
+            document.getElementById('m-target-lbl').innerText = t.mTargetLbl;
+            document.getElementById('m-target-val').innerHTML = `${t.mTargetVal} <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>`;
+            document.getElementById('m-daily-lbl').innerText = t.mDailyLbl;
+            document.getElementById('m-daily-val').innerHTML = `${t.mDailyVal} <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>`;
+            document.getElementById('m-maxloss-lbl').innerText = t.mMaxlossLbl;
+            document.getElementById('m-maxloss-val').innerHTML = `${t.mMaxlossVal} <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>`;
+            document.getElementById('m-activity-lbl').innerText = t.mActivityLbl;
+            document.getElementById('m-activity-val').innerHTML = `${t.mActivityVal} <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>`;
+
+            document.getElementById('proc-2-tag').innerText = t.proc2Tag;
+            document.getElementById('proc-2-title').innerText = t.proc2Title;
+            document.getElementById('proc-2-desc').innerText = t.proc2Desc;
+            document.getElementById('proc-2-badge').innerText = t.proc2Badge;
+
+            document.getElementById('proc-3-tag').innerText = t.proc3Tag;
+            document.getElementById('proc-3-title').innerText = t.proc3Title;
+            document.getElementById('proc-3-desc').innerText = t.proc3Desc;
+
+            document.getElementById('chal-heading').innerText = t.chalHeading;
+            document.getElementById('chal-sub').innerText = t.chalSub;
+            document.getElementById('zero-step-btn').innerText = t.zeroStepBtn;
+            document.getElementById('two-step-btn').innerText = t.twoStepBtn;
+
+            document.getElementById('faq-tag').innerText = t.faqTag;
+            document.getElementById('faq-heading').innerText = t.faqHeading;
+            document.getElementById('faq-sub').innerText = t.faqSub;
+
+            document.getElementById('q1-title').innerText = t.q1Title;
+            document.getElementById('q1-ans').innerText = t.q1Ans;
+            document.getElementById('q2-title').innerText = t.q2Title;
+            document.getElementById('q2-ans').innerText = t.q2Ans;
+            document.getElementById('q3-title').innerText = t.q3Title;
+            document.getElementById('q3-ans').innerText = t.q3Ans;
+            document.getElementById('q4-title').innerText = t.q4Title;
+            document.getElementById('q4-ans').innerText = t.q4Ans;
+
+            document.getElementById('footer-disc-title').innerText = t.footerDiscTitle;
+            document.getElementById('f-box1-h').innerText = t.fBox1H;
+            document.getElementById('f-box1-p').innerText = t.fBox1P;
+            document.getElementById('f-box2-h').innerText = t.fBox2H;
+            document.getElementById('f-box2-p').innerText = t.fBox2P;
+            document.getElementById('f-box3-h').innerText = t.fBox3H;
+            document.getElementById('f-box3-p').innerText = t.fBox3P;
+            document.getElementById('f-box4-h').innerText = t.fBox4H;
+            document.getElementById('f-box4-p').innerText = t.fBox4P;
+            document.getElementById('f-box5-h').innerText = t.fBox5H;
+            document.getElementById('f-box5-p').innerText = t.fBox5P;
+
+            document.getElementById('copy-text').innerHTML = t.copyText;
+            document.getElementById('built-text').innerText = t.builtText;
+
+            renderPricingCards();
+            toggleLangMenu();
+        }
+
+        function toggleFaq(contentId, arrowId) {
+            const content = document.getElementById(contentId);
+            const arrow = document.getElementById(arrowId);
+            content.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+
+        window.addEventListener('click', function(e) {
+            const button = document.getElementById('langMenuButton');
+            const dropdown = document.getElementById('langDropdown');
+            const arrow = document.getElementById('langArrow');
+            if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        });
+
+        /* Plan Selection Handler */
+        function selectPlan(size, price) {
+            localStorage.setItem("selectedPlanSize", size);
+            localStorage.setItem("selectedPlanPrice", price);
+            window.location.href = "checkout.html";
+        }
+
+        /* Challenge Tier Selection Functionality */
+        let isZeroStep = true;
+        const propTiers = [
+            { label: "5K", priceZero: 80, priceTwo: 40 },
+            { label: "10K", priceZero: 100, priceTwo: 70 },
+            { label: "25K", priceZero: 200, priceTwo: 180 },
+            { label: "50K", priceZero: 300, priceTwo: 310 },
+            { label: "100K", priceZero: 500, priceTwo: 540 }
+        ];
+
+        function setChallengeMode(zeroStep) {
+            isZeroStep = zeroStep;
+            
+            const zeroBtn = document.getElementById('zero-step-btn');
+            const twoBtn = document.getElementById('two-step-btn');
+            
+            if (isZeroStep) {
+                zeroBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors bg-blue-600 text-white";
+                twoBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors text-slate-400 hover:text-white";
+                document.getElementById('challenge-rules-text').innerText = "Rules: Daily Loss: 6% | Max Loss: 5% | Consistency: 20% | Min Days: 10";
+            } else {
+                twoBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors bg-blue-600 text-white";
+                zeroBtn.className = "flex-1 py-2.5 text-xs font-bold rounded-lg transition-colors text-slate-400 hover:text-white";
+                document.getElementById('challenge-rules-text').innerText = "Rules: Target: 5%/2% | Max Loss: 20% | Daily Loss: 8% | Consistency: 20% | Min Days: 6";
+            }
+            
+            renderPricingCards();
+        }
+
+        function renderPricingCards() {
+            const container = document.getElementById('pricing-tiers-container');
+            container.innerHTML = '';
+            const t = translations[currentLangCode];
+
+            propTiers.forEach(tier => {
+                const isPopular = tier.label === "100K";
+                const price = isZeroStep ? tier.priceZero : tier.priceTwo;
+                const maxLoss = isZeroStep ? "5%" : "20%";
+                const dailyLoss = isZeroStep ? "6%" : "8%";
+                const minDays = isZeroStep ? "10 days" : "6 days";
+
+                const cardHtml = `
+                    <div class="min-w-[200px] flex-1 bg-[#1E293B] rounded-2xl p-4 flex flex-col justify-between border-2 ${isPopular ? 'border-blue-500' : 'border-slate-700/50'} shadow-md">
+                        <div>
+                            ${isPopular ? `<span class="inline-block bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2 uppercase">${t.popularBadge}</span>` : ''}
+                            <p class="text-[11px] text-slate-400 font-medium">${t.accountSizeLbl}</p>
+                            <h4 class="text-2xl font-bold text-white tracking-tight">$${tier.label}</h4>
+                            
+                            <div class="mt-3 mb-4">
+                                <p class="text-[11px] text-slate-400 font-medium">${t.priceLbl}</p>
+                                <p class="text-xl font-bold text-emerald-400">$${price}</p>
+                            </div>
+
+                            <!-- Specs Breakdown -->
+                            <div class="space-y-2 text-xs text-slate-300 border-t border-slate-700/60 pt-3">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">${t.maxLossLbl}</span>
+                                    <span class="font-semibold">${maxLoss}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">${t.dailyLossLbl}</span>
+                                    <span class="font-semibold">${dailyLoss}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">${t.minDaysLbl}</span>
+                                    <span class="font-semibold">${minDays}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="selectPlan('${tier.label}', ${price})" class="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition">
+                            ${t.selectBtnText} $${tier.label}
+                        </button>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        // Initial pricing render
+        renderPricingCards();
+    </script>
+</body>
+</html>

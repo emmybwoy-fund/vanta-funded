@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Panel | Vanta Funded</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-blue-600 selection:text-white">
+
+    <!-- Loading Screen Guard (Visible until session is verified) -->
+    <div id="admin-auth-loading" class="fixed inset-0 bg-slate-950 z-50 flex flex-col items-center justify-center space-y-4">
+        <div class="w-8 h-8 border-4 border-rose-600 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-sm font-medium text-slate-400">Verifying administrative clearance...</p>
+    </div>
+
+    <!-- Main Protected Content (Hidden until authenticated) -->
+    <div id="admin-content" class="hidden">
+
+        <!-- Top Navigation Bar -->
+        <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 sticky top-0 z-40 px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-rose-600 to-red-500 text-white font-black text-xs h-9 px-3.5 rounded-xl flex items-center justify-center tracking-wider shadow-lg shadow-rose-900/20">
+                    ADMIN
+                </div>
+                <div>
+                    <span class="font-bold text-base tracking-tight text-white block">Vanta Funded Console</span>
+                    <span class="text-[11px] text-rose-400 font-medium">System Control & Management</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden sm:flex items-center space-x-2 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl text-xs text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span id="admin-email-display">Secure Node</span>
+                </div>
+                <a href="dashboard.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold px-4 py-2 rounded-xl transition border border-slate-700/50 shadow-sm">
+                    Exit to User View
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="max-w-7xl mx-auto px-6 py-8 space-y-8">
+            
+            <!-- Welcome Banner -->
+            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-rose-950/30 border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-rose-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+                        Welcome back, Administrator
+                    </h1>
+                    <p class="text-sm text-slate-400 mt-1">
+                        Monitoring live challenge evaluations, user database status, and platform revenue metrics.
+                    </p>
+                </div>
+                <button onclick="refreshData()" class="bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition shadow-lg shadow-rose-600/20 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    Sync Data Feed
+                </button>
+            </div>
+
+            <!-- Metric Grid Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl hover:border-slate-700 transition">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Registered Users</p>
+                    <div class="flex items-baseline justify-between mt-3">
+                        <p class="text-3xl font-black text-white">1</p>
+                        <span class="text-xs font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-2 py-0.5 rounded-md">+100% active</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/60">Firebase Authentication sync active</p>
+                </div>
+
+                <div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl hover:border-slate-700 transition">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Latest Challenge Tier</p>
+                    <div class="flex items-baseline justify-between mt-3">
+                        <p id="admin-active-plan" class="text-3xl font-black text-blue-400">$5K</p>
+                        <span class="text-xs font-medium text-blue-400 bg-blue-950/60 border border-blue-800/50 px-2 py-0.5 rounded-md">Evaluation</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/60">Pulled from recent checkout</p>
+                </div>
+
+                <div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl hover:border-slate-700 transition">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Simulated Revenue</p>
+                    <div class="flex items-baseline justify-between mt-3">
+                        <p id="admin-revenue" class="text-3xl font-black text-emerald-400">$80</p>
+                        <span class="text-xs font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-2 py-0.5 rounded-md">Collected</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/60">Instant payment gateway simulation</p>
+                </div>
+
+                <div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl hover:border-slate-700 transition">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Risk System Health</p>
+                    <div class="flex items-baseline justify-between mt-3">
+                        <p class="text-3xl font-black text-emerald-400">Optimal</p>
+                        <span class="text-xs font-medium text-purple-400 bg-purple-950/60 border border-purple-800/50 px-2 py-0.5 rounded-md">Automated</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/60">Drawdown protections enforced</p>
+                </div>
+
+            </div>
+
+            <!-- User Management Table Box -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
+                <div class="p-6 md:p-8 border-b border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Active Trader Roster</h3>
+                        <p class="text-xs text-slate-400 mt-0.5">Manage accounts, change evaluation parameters, or override limits.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs text-slate-400 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl">Showing 1 Active Session</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-950/70 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-800">
+                                <th class="p-5 font-semibold">Trader Profile</th>
+                                <th class="p-5 font-semibold">Evaluation Package</th>
+                                <th class="p-5 font-semibold">Current Phase Status</th>
+                                <th class="p-5 font-semibold text-right">Admin Controls</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-slate-800/80 text-sm">
+                            <tr class="hover:bg-slate-800/30 transition">
+                                <td class="p-5">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 font-bold flex items-center justify-center text-xs">
+                                            TR
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white">Local Simulation User</p>
+                                            <p class="text-xs text-slate-400">Browser LocalStorage Session</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-5">
+                                    <span id="table-plan" class="font-bold text-blue-400 bg-blue-950/50 border border-blue-900/60 px-3 py-1 rounded-lg text-xs">$5K Challenge</span>
+                                </td>
+                                <td class="p-5">
+                                    <span class="inline-flex items-center gap-1.5 bg-emerald-950 text-emerald-400 border border-emerald-800/70 px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                        Evaluation Active
+                                    </span>
+                                </td>
+                                <td class="p-5 text-right space-x-2">
+                                    <button onclick="alert('Account parameters reset successfully.')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium px-3 py-1.5 rounded-xl transition border border-slate-700">
+                                        Reset Stats
+                                    </button>
+                                    <button onclick="alert('Simulated account passed to funded tier!')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded-xl transition shadow-lg shadow-blue-600/20">
+                                        Pass Account
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Firebase Authentication Security Guard Script -->
+    <script type="module">
+        import { auth, onAuthStateChanged } from "./firebase-config.js";
+
+        const ADMIN_EMAIL = "emmybwoy514@gmail.com";
+        const loadingScreen = document.getElementById("admin-auth-loading");
+        const adminContent = document.getElementById("admin-content");
+        const emailDisplay = document.getElementById("admin-email-display");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user && user.email === ADMIN_EMAIL) {
+                // Verified Administrator
+                emailDisplay.textContent = user.email;
+                loadingScreen.style.display = "none";
+                adminContent.classList.remove("hidden");
+            } else {
+                // Unauthorized user or not logged in -> redirect to dashboard instantly
+                window.location.href = "dashboard.html";
+            }
+        });
+
+        window.refreshData = function() {
+            const planSize = localStorage.getItem("selectedPlanSize") || "5K";
+            const planPrice = localStorage.getItem("selectedPlanPrice") || "80";
+
+            document.getElementById("admin-active-plan").textContent = "$" + planSize;
+            document.getElementById("admin-revenue").textContent = "$" + planPrice;
+            document.getElementById("table-plan").textContent = "$" + planSize + " Challenge";
+            
+            alert("Admin data feed synced successfully!");
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const planSize = localStorage.getItem("selectedPlanSize");
+            const planPrice = localStorage.getItem("selectedPlanPrice");
+            if (planSize) {
+                document.getElementById("admin-active-plan").textContent = "$" + planSize;
+                document.getElementById("table-plan").textContent = "$" + planSize + " Challenge";
+            }
+            if (planPrice) {
+                document.getElementById("admin-revenue").textContent = "$" + planPrice;
+            }
+        });
+    </script>
+
+</body>
+</html>

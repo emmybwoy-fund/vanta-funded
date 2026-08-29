@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout Gateway | Vanta Funded</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen font-sans relative overflow-x-hidden">
+
+    <!-- Top Navigation Bar -->
+    <header class="relative z-10 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-slate-900 text-white font-black text-xs h-9 px-3.5 rounded-xl flex items-center justify-center tracking-wider">
+                VF
+            </div>
+            <div>
+                <span class="font-extrabold text-base tracking-tight text-slate-900 block">Vanta Funded</span>
+                <span class="text-[11px] text-blue-600 font-semibold">Secure Checkout Gateway</span>
+            </div>
+        </div>
+        <a href="dashboard.html" class="bg-slate-100 text-slate-700 text-xs font-semibold px-4 py-2 rounded-xl border border-slate-200">
+            Return to Dashboard
+        </a>
+    </header>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-4xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Order Summary Column -->
+            <div class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl h-fit">
+                <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-4">Order Summary</h2>
+                <div class="space-y-4 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Selected Challenge</span>
+                        <span id="summary-plan-name" class="font-semibold text-slate-900">$5K Challenge</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Account Type</span>
+                        <span class="font-semibold text-emerald-600">Standard Evaluation</span>
+                    </div>
+                    <div class="flex justify-between border-t border-slate-100 pt-4 text-base font-bold">
+                        <span class="text-slate-900">Total Due</span>
+                        <span id="summary-plan-price" class="text-blue-600">$80</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods Column -->
+            <div class="md:col-span-2 bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 shadow-2xl">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">Select Cryptocurrency Network</h2>
+                    <p class="text-xs text-slate-500 mt-1">Choose your preferred deposit asset below to generate the address.</p>
+                </div>
+
+                <!-- Network Selection Buttons -->
+                <div class="grid grid-cols-3 gap-3">
+                    <button type="button" id="net-trc20" class="net-btn bg-slate-50 border-2 border-blue-600 rounded-2xl p-4 text-center cursor-pointer transition">
+                        <span class="block font-bold text-slate-900 text-sm pointer-events-none">USDT</span>
+                        <span class="net-sub block text-[10px] text-blue-600 font-bold mt-0.5 pointer-events-none">TRC20 Network</span>
+                    </button>
+                    <button type="button" id="net-bep20" class="net-btn bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 text-center cursor-pointer transition">
+                        <span class="block font-bold text-slate-900 text-sm pointer-events-none">USDT / Crypto</span>
+                        <span class="net-sub block text-[10px] text-slate-500 font-semibold mt-0.5 pointer-events-none">BSC (BEP20)</span>
+                    </button>
+                    <button type="button" id="net-btc" class="net-btn bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 text-center cursor-pointer transition">
+                        <span class="block font-bold text-slate-900 text-sm pointer-events-none">Bitcoin</span>
+                        <span class="net-sub block text-[10px] text-slate-500 font-semibold mt-0.5 pointer-events-none">BTC Network</span>
+                    </button>
+                </div>
+
+                <!-- Address Box Container -->
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="wallet-address-display" readonly class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs font-mono px-4 py-3 rounded-xl focus:outline-none select-all" value="THpDQqwkva6A8BNJmSs-b8pqe5Q94vWjSyD">
+                        <button type="button" id="copy-btn" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-4 py-3 rounded-xl transition cursor-pointer">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Button -->
+                <button type="button" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm py-4 rounded-2xl transition shadow-lg cursor-pointer flex items-center justify-center">
+                    Confirm Payment
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script Implementation -->
+    <script>
+        const networks = {
+            TRC20: {
+                address: "THpDQqwkva6A8BNJmSs-b8pqe5Q94vWjSyD"
+            },
+            BEP20: {
+                address: "0x17aafbd26fccd7fea3ad69c06c0d990312fbac10"
+            },
+            BTC: {
+                address: "1N9kK7FKjwGVdB9LnAHkAeKSsvUAHSHZ9f"
+            }
+        };
+
+        let currentActive = "TRC20";
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const planSize = localStorage.getItem("selectedPlanSize") || "5K";
+            const planPrice = localStorage.getItem("selectedPlanPrice") || "80";
+            document.getElementById("summary-plan-name").textContent = "$" + planSize + " Challenge";
+            document.getElementById("summary-plan-price").textContent = "$" + planPrice;
+
+            document.getElementById("net-trc20").addEventListener("click", () => selectNet("TRC20"));
+            document.getElementById("net-bep20").addEventListener("click", () => selectNet("BEP20"));
+            document.getElementById("net-btc").addEventListener("click", () => selectNet("BTC"));
+
+            document.getElementById("copy-btn").addEventListener("click", function() {
+                const addr = document.getElementById("wallet-address-display").value;
+                navigator.clipboard.writeText(addr);
+                alert("Copied to clipboard!");
+            });
+
+            document.getElementById("submit-btn").addEventListener("click", function() {
+                alert("Payment submission received! Your account is queued for verification.");
+                window.location.href = "dashboard.html";
+            });
+        });
+
+        function selectNet(netKey) {
+            currentActive = netKey;
+            const data = networks[netKey];
+
+            document.getElementById("wallet-address-display").value = data.address;
+
+            document.querySelectorAll(".net-btn").forEach(b => {
+                b.classList.remove("border-blue-600");
+                b.classList.add("border-slate-200");
+                const sub = b.querySelector(".net-sub");
+                if(sub) {
+                    sub.classList.remove("text-blue-600", "font-bold");
+                    sub.classList.add("text-slate-500", "font-semibold");
+                }
+            });
+
+            const activeBtn = document.getElementById("net-" + netKey.toLowerCase());
+            if(activeBtn) {
+                activeBtn.classList.remove("border-slate-200");
+                activeBtn.classList.add("border-blue-600");
+                const activeSub = activeBtn.querySelector(".net-sub");
+                if(activeSub) {
+                    activeSub.classList.remove("text-slate-500", "font-semibold");
+                    activeSub.classList.add("text-blue-600", "font-bold");
+                }
+            }
+
+            localStorage.setItem("selectedCryptoNetwork", netKey);
+            localStorage.setItem("selectedWalletAddress", data.address);
+        }
+    </script>
+</body>
+</html>
