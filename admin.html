@@ -50,12 +50,12 @@
                         Welcome back, Administrator
                     </h1>
                     <p class="text-sm text-slate-400 mt-1">
-                        Monitoring live challenge evaluations, user database status, and platform revenue metrics.
+                        Reviewing incoming crypto payments, user evaluations, and platform management metrics.
                     </p>
                 </div>
-                <button onclick="refreshData()" class="bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition shadow-lg shadow-rose-600/20 flex items-center gap-2">
+                <button onclick="loadAdminData()" class="bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition shadow-lg shadow-rose-600/20 flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                    Sync Data Feed
+                    Sync Payment Feed
                 </button>
             </div>
 
@@ -63,12 +63,12 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 
                 <div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl hover:border-slate-700 transition">
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Registered Users</p>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Pending Approvals</p>
                     <div class="flex items-baseline justify-between mt-3">
-                        <p class="text-3xl font-black text-white">1</p>
-                        <span class="text-xs font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-2 py-0.5 rounded-md">+100% active</span>
+                        <p id="stat-pending" class="text-3xl font-black text-amber-400">0</p>
+                        <span class="text-xs font-medium text-amber-400 bg-amber-950/60 border border-amber-800/50 px-2 py-0.5 rounded-md">Action Required</span>
                     </div>
-                    <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/60">Firebase Authentication sync active</p>
+                    <p class="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-800/60">Incoming blockchain deposits</p>
                 </div>
 
                 <div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm shadow-xl hover:border-slate-700 transition">
@@ -100,15 +100,15 @@
 
             </div>
 
-            <!-- User Management Table Box -->
+            <!-- Payment Approvals Table Box -->
             <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
                 <div class="p-6 md:p-8 border-b border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <h3 class="text-lg font-bold text-white">Active Trader Roster</h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Manage accounts, change evaluation parameters, or override limits.</p>
+                        <h3 class="text-lg font-bold text-white">Crypto Payment Requests</h3>
+                        <p class="text-xs text-slate-400 mt-0.5">Approve user deposits to unlock their dashboard access automatically.</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span class="text-xs text-slate-400 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl">Showing 1 Active Session</span>
+                        <span class="text-xs text-slate-400 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl">Live Queue Feed</span>
                     </div>
                 </div>
 
@@ -116,43 +116,16 @@
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-950/70 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-800">
-                                <th class="p-5 font-semibold">Trader Profile</th>
-                                <th class="p-5 font-semibold">Evaluation Package</th>
-                                <th class="p-5 font-semibold">Current Phase Status</th>
-                                <th class="p-5 font-semibold text-right">Admin Controls</th>
+                                <th class="p-5 font-semibold">Challenge Plan</th>
+                                <th class="p-5 font-semibold">Amount Due</th>
+                                <th class="p-5 font-semibold">Crypto Network</th>
+                                <th class="p-5 font-semibold">Destination Address Used</th>
+                                <th class="p-5 font-semibold">Status</th>
+                                <th class="p-5 font-semibold text-right">Admin Actions</th>
                             </tr>
                         </thead>
                         <tbody id="admin-table-body" class="divide-y divide-slate-800/80 text-sm">
-                            <tr class="hover:bg-slate-800/30 transition">
-                                <td class="p-5">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 font-bold flex items-center justify-center text-xs">
-                                            TR
-                                        </div>
-                                        <div>
-                                            <p class="font-semibold text-white">Local Simulation User</p>
-                                            <p class="text-xs text-slate-400">Browser LocalStorage Session</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-5">
-                                    <span id="table-plan" class="font-bold text-blue-400 bg-blue-950/50 border border-blue-900/60 px-3 py-1 rounded-lg text-xs">$5K Challenge</span>
-                                </td>
-                                <td class="p-5">
-                                    <span class="inline-flex items-center gap-1.5 bg-emerald-950 text-emerald-400 border border-emerald-800/70 px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                                        Evaluation Active
-                                    </span>
-                                </td>
-                                <td class="p-5 text-right space-x-2">
-                                    <button onclick="alert('Account parameters reset successfully.')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium px-3 py-1.5 rounded-xl transition border border-slate-700">
-                                        Reset Stats
-                                    </button>
-                                    <button onclick="alert('Simulated account passed to funded tier!')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded-xl transition shadow-lg shadow-blue-600/20">
-                                        Pass Account
-                                    </button>
-                                </td>
-                            </tr>
+                            <!-- Populated dynamically via script -->
                         </tbody>
                     </table>
                 </div>
@@ -161,7 +134,7 @@
         </main>
     </div>
 
-    <!-- Firebase Authentication Security Guard Script -->
+    <!-- Firebase Authentication & Control Script -->
     <script type="module">
         import { auth, onAuthStateChanged } from "./firebase-config.js";
 
@@ -176,34 +149,75 @@
                 emailDisplay.textContent = user.email;
                 loadingScreen.style.display = "none";
                 adminContent.classList.remove("hidden");
+                loadAdminData(); // Load payments queue once authorized
             } else {
-                // Unauthorized user or not logged in -> redirect to dashboard instantly
+                // Unauthorized user -> redirect to dashboard instantly
                 window.location.href = "dashboard.html";
             }
         });
 
-        window.refreshData = function() {
+        window.loadAdminData = function() {
+            const tableBody = document.getElementById("admin-table-body");
+            const paymentStatus = localStorage.getItem("vantaPaymentStatus");
             const planSize = localStorage.getItem("selectedPlanSize") || "5K";
             const planPrice = localStorage.getItem("selectedPlanPrice") || "80";
+            const cryptoNet = localStorage.getItem("selectedCryptoNetwork") || "TRC20";
+            const walletAddr = localStorage.getItem("selectedWalletAddress") || "THpDQqwkva6A8BNJmSs-b8pqe5Q94vWjSyD";
 
+            // Sync top cards
             document.getElementById("admin-active-plan").textContent = "$" + planSize;
             document.getElementById("admin-revenue").textContent = "$" + planPrice;
-            document.getElementById("table-plan").textContent = "$" + planSize + " Challenge";
-            
-            alert("Admin data feed synced successfully!");
+
+            // If no submission or already processed/cleared
+            if (!paymentStatus || paymentStatus === "approved" || paymentStatus === "rejected") {
+                document.getElementById("stat-pending").textContent = "0";
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="p-10 text-center text-slate-500 text-xs">
+                            No pending crypto payment submissions found in the queue.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Render pending payment record
+            document.getElementById("stat-pending").textContent = "1";
+            tableBody.innerHTML = `
+                <tr class="hover:bg-slate-800/30 transition">
+                    <td class="p-5 font-bold text-white">$${planSize} Challenge</td>
+                    <td class="p-5 font-semibold text-emerald-400">$${planPrice}</td>
+                    <td class="p-5 font-semibold text-slate-300">${cryptoNet}</td>
+                    <td class="p-5 font-mono text-xs text-slate-400 truncate max-w-xs" title="${walletAddr}">${walletAddr}</td>
+                    <td class="p-5">
+                        <span class="inline-flex items-center gap-1.5 bg-amber-950 text-amber-400 border border-amber-800/70 px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                            Waiting Review
+                        </span>
+                    </td>
+                    <td class="p-5 text-right space-x-2">
+                        <button onclick="approvePayment()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition shadow-lg shadow-emerald-600/20 cursor-pointer">
+                            Approve
+                        </button>
+                        <button onclick="rejectPayment()" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition shadow-lg shadow-rose-600/20 cursor-pointer">
+                            Reject
+                        </button>
+                    </td>
+                </tr>
+            `;
         }
 
-        window.addEventListener("DOMContentLoaded", () => {
-            const planSize = localStorage.getItem("selectedPlanSize");
-            const planPrice = localStorage.getItem("selectedPlanPrice");
-            if (planSize) {
-                document.getElementById("admin-active-plan").textContent = "$" + planSize;
-                document.getElementById("table-plan").textContent = "$" + planSize + " Challenge";
-            }
-            if (planPrice) {
-                document.getElementById("admin-revenue").textContent = "$" + planPrice;
-            }
-        });
+        window.approvePayment = function() {
+            localStorage.setItem("vantaPaymentStatus", "approved");
+            alert("Payment approved! The user's dashboard is now fully unlocked.");
+            loadAdminData();
+        }
+
+        window.rejectPayment = function() {
+            localStorage.setItem("vantaPaymentStatus", "rejected");
+            alert("Payment rejected. The user will be notified on checkout.");
+            loadAdminData();
+        }
     </script>
 
 </body>
