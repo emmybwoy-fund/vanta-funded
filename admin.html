@@ -163,7 +163,8 @@
 
     <!-- Firebase Authentication Security Guard Script -->
     <script type="module">
-        import { auth, onAuthStateChanged } from "./firebase-config.js";
+        import { auth } from "./firebase-config.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         const ADMIN_EMAIL = "emmybwoy514@gmail.com";
         const loadingScreen = document.getElementById("admin-auth-loading");
