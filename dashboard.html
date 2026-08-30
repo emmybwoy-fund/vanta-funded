@@ -46,7 +46,7 @@
                 </div>
                 <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex-1 md:w-40 text-center">
                     <p class="text-xs text-slate-400">Total Profit / Loss</p>
-                    <p class="text-xl font-bold text-emerald-400 mt-1">+$0.00</p>
+                    <p id="dash-profit" class="text-xl font-bold text-emerald-400 mt-1">+$0.00</p>
                 </div>
             </div>
         </div>
@@ -61,10 +61,10 @@
                     <span class="text-xs text-blue-400 font-medium">Goal: 8%</span>
                 </div>
                 <div class="w-full bg-slate-950 rounded-full h-3 mb-3 overflow-hidden border border-slate-800">
-                    <div class="bg-blue-600 h-full rounded-full" style="width: 0%"></div>
+                    <div id="progress-bar" class="bg-blue-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
                 </div>
                 <div class="flex justify-between text-xs text-slate-400">
-                    <span>Current: $0</span>
+                    <span>Current: $<span id="current-profit">0</span></span>
                     <span>Target: $<span id="target-amount">400</span></span>
                 </div>
             </div>
@@ -101,6 +101,34 @@
 
         </div>
 
+        <!-- Payout Request Section (Dynamically Unlocks When Target is Met) -->
+        <div id="payout-card" class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl hidden">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div>
+                    <h2 class="text-lg font-bold text-white">Trader Payout</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Congratulations! You have successfully cleared your evaluation target.</p>
+                </div>
+                <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-3 py-1.5 rounded-xl border border-emerald-500/20">
+                    Eligible
+                </span>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Available Profit Split (80%)</span>
+                    <span id="payout-amount" class="font-bold text-white">$320.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Payout Method</span>
+                    <span class="font-semibold text-blue-400">USDT (TRC20 / BEP20)</span>
+                </div>
+            </div>
+
+            <button type="button" id="request-payout-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm py-4 rounded-2xl transition shadow-lg cursor-pointer flex items-center justify-center">
+                Request Payout
+            </button>
+        </div>
+
         <!-- Quick Integration Hint -->
         <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 text-center text-sm text-slate-400">
             Need to link your mobile application charts or MetaTrader interface? You can load market indicators and place test positions directly from your desktop app environment.
@@ -108,12 +136,44 @@
 
     </main>
 
-    <!-- Script to dynamically load the purchased plan size -->
+    <!-- Script to dynamically load plan settings & check payout availability -->
     <script>
-        const planSize = localStorage.getItem("selectedPlanSize") || "5K";
-        document.getElementById("dash-account-size").textContent = planSize;
-        document.getElementById("dash-balance").textContent = "$" + (parseInt(planSize) * 1000).toLocaleString() + ".00";
-        document.getElementById("target-amount").textContent = (parseInt(planSize) * 80).toLocaleString();
+        document.addEventListener("DOMContentLoaded", function() {
+            const planSize = localStorage.getItem("selectedPlanSize") || "5K";
+            const multiplier = parseInt(planSize);
+            
+            document.getElementById("dash-account-size").textContent = planSize;
+            document.getElementById("dash-balance").textContent = "$" + (multiplier * 1000).toLocaleString() + ".00";
+            
+            const targetAmount = multiplier * 80; // 8% target based on plan size
+            document.getElementById("target-amount").textContent = targetAmount.toLocaleString();
+
+            // Simulate current user profit for testing (Change this value or link it to your trading state)
+            // Tip: Set this equal to or greater than 'targetAmount' to see the payout card unlock!
+            let currentProfit = 0; 
+
+            // Update UI elements with profit values
+            document.getElementById("current-profit").textContent = currentProfit.toLocaleString();
+            document.getElementById("dash-profit").textContent = (currentProfit >= 0 ? "+$" : "-$") + Math.abs(currentProfit).toLocaleString() + ".00";
+            
+            // Calculate progress bar percentage
+            let progressPercent = Math.min(Math.max((currentProfit / targetAmount) * 100, 0), 100);
+            document.getElementById("progress-bar").style.width = progressPercent + "%";
+
+            // Check Payout Eligibility
+            if (currentProfit >= targetAmount) {
+                const payoutCard = document.getElementById("payout-card");
+                payoutCard.classList.remove("hidden");
+                
+                // Calculate 80% profit split
+                const payoutSplit = currentProfit * 0.80;
+                document.getElementById("payout-amount").textContent = "$" + payoutSplit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
+        });
+
+        document.getElementById("request-payout-btn")?.addEventListener("click", function() {
+            alert("Payout request submitted successfully! Funds will be dispatched to your registered wallet address within 24 hours.");
+        });
     </script>
 
 </body>
